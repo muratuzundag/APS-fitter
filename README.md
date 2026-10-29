@@ -8,7 +8,7 @@ APS-fitter fits identified mode sequences using periods, one-standard-deviation 
 
 Suitable applications include approximately uniform g-mode period sequences in white dwarfs and hot subdwarfs. The software fits an **assigned sequence**: it does not automatically determine radial orders, identify angular degrees, search for an unknown spacing, or resolve ambiguous multiplets.
 
-**Status:** Version `0.1.0`, initial release candidate. Read the statistical limitations before interpreting the formal errors as a complete scientific uncertainty.
+**Status:** Version `0.1.0`, initial release. Read the statistical limitations before interpreting the formal errors as a complete scientific uncertainty.
 
 ## Installation
 
