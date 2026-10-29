@@ -143,7 +143,7 @@ compact-spacing modes.csv --output-dir corrected_results --splitting l1=2.0,0.1 
 
 These splitting numbers illustrate syntax; replace them with measurements appropriate to your target. Supplying `l1=2.0` treats the value as fixed. A nonzero `m` without splitting raises an error; all-zero `m` values produce no correction and trigger a warning if a splitting was supplied.
 
-One splitting value is drawn **per sequence per realization**, preserving its shared effect on all modes in that sequence. The splitting and period measurements are otherwise assumed independent. Covariance arising when they were estimated from the same modes is not automatically included.
+One splitting value is drawn **per sequence per realization**, preserving its shared effect on all modes in that sequence. The splitting and period measurements are otherwise assumed independent. Covariance that arises when they are estimated from the same modes is not automatically included.
 
 Negative splitting draws and invalid periods or corrected frequencies are rejected. Use Gaussian splitting errors only when small compared with the positive splitting; large uncertainties can make rejection alter the effective distribution.
 
@@ -151,7 +151,7 @@ Negative splitting draws and invalid periods or corrected frequencies are reject
 
 A blank `m` means zero numerically, **not** an unknown identification that the program marginalizes over. The code does not randomly assign `m` and does not validate the allowed `m` range against an angular degree.
 
-For ambiguous assignments, compare explicit hypotheses and describe their effects separately. Formal marginalization requires a model of their probabilities; this is not supplied here.
+For ambiguous assignments, compare explicit hypotheses and describe their effects separately. Formal marginalization requires a model of their probabilities; such a model is not supplied here.
 
 ## Statistical method
 
@@ -173,7 +173,7 @@ The reference fit uses generalized least squares (GLS):
 \operatorname{Cov}(\widehat{\boldsymbol\beta})=(X^T C^{-1}X)^{-1}.
 ```
 
-The design matrix contains an intercept and radial order; the coefficients are intercept and slope. Without splitting uncertainty the covariance is diagonal, giving inverse-variance weighted least squares. With splitting uncertainty the reference covariance includes the shared contribution calculated with first-order derivatives.
+The design matrix contains an intercept and radial order; the coefficients are intercept and slope. Without splitting uncertainty, the covariance is diagonal, giving inverse-variance weighted least squares. With splitting uncertainty the reference covariance includes the shared contribution calculated with first-order derivatives.
 
 The supplied errors are treated as absolute errors; the covariance is not automatically multiplied by reduced chi-square. The convention is analogous to absolute-error weighting described in the [SciPy fitting documentation](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html), although APS-fitter implements the linear algebra directly with NumPy.
 
@@ -199,7 +199,7 @@ A fixed extra scatter parameter can be requested with:
 compact-spacing modes.csv --intrinsic-scatter l1=0.5 --intrinsic-scatter l2=0.5
 ```
 
-The software neither estimates this parameter nor propagates uncertainty in its value. Without splitting correction it is added in quadrature to measurement errors and contributes an independent Gaussian perturbation. With correction, the perturbation is added before transformation while the same numerical variance is added to weights after transformation; those conventions are only approximately equivalent for corrections close to identity. Review or extend the model before combining substantial corrections with this option.
+The software neither estimates this parameter nor propagates uncertainty in its value. Without splitting correction, it is added in quadrature to measurement errors and contributes an independent Gaussian perturbation. With correction, the perturbation is added before transformation while the same numerical variance is added to weights after transformation; those conventions are only approximately equivalent for corrections close to identity. Review or extend the model before combining substantial corrections with this option.
 
 Mode trapping may create structured residuals, not independent Gaussian scatter. Do not select an extra scatter value merely to obtain preferred error bars.
 
